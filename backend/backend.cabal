@@ -52,6 +52,15 @@ extra-doc-files:    CHANGELOG.md
 
 common warnings
     ghc-options: -Wall
+    build-depends:
+        base ^>=4.16.4.0,
+        aeson,
+        text,
+        wai,
+        warp,
+        servant,
+        servant-server,
+        servant-client
 
 library
     -- Import common warning flags.
@@ -67,7 +76,6 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.16.4.0
 
     -- Directories containing source files.
     hs-source-dirs:   lib
@@ -90,7 +98,6 @@ executable backend
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.16.4.0,
         backend
 
     -- Directories containing source files.
