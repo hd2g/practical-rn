@@ -57,6 +57,7 @@ common warnings
         aeson,
         text,
         wai,
+        wai-logger,
         warp,
         servant,
         servant-server,
@@ -67,7 +68,8 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules:  MyLib
+    exposed-modules:
+        FeedsAPI
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -131,4 +133,11 @@ test-suite backend-test
     -- Test dependencies.
     build-depends:
         base ^>=4.16.4.0,
+        hspec >=2.0.0,
+        hspec-core,
+        hspec-expectations,
+        hspec-wai,
+        hspec-wai-json,
+        wai-extra,
+        attoparsec,
         backend

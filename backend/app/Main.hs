@@ -5,39 +5,21 @@
 
 module Main where
 
-import qualified MyLib (someFunc)
-
 import GHC.Generics (Generic)
 
-import Data.Aeson
+import Data.Aeson (FromJSON, ToJSON)
 import Data.Text (Text)
+import qualified Data.Maybe as Maybe
 
 import Servant
+import qualified Network.Wai.Handler.Warp as Warp
+import qualified Network.Wai.Logger as Logger
 
-import Network.Wai.Handler.Warp as Warp
+import qualified FeedsAPI as FeedsAPI
 
 main :: IO ()
 main = do
-  Warp.run 8080 app
-
-app :: Application
-app = serve helloApi server
-
-server :: Server HelloAPI
-server = hello :<|> user where
-  hello = return "Hello world"
-  user n a = return $ User n a
-
-data User = User
-  { name :: Text
-  , age :: Int
-  } deriving (Eq, Show, Read, Generic)
-
-instance FromJSON User
-instance ToJSON User
-
-type HelloAPI = Get '[PlainText] Text
-            :<|> "user" :> Capture "name" Text :> Capture "age" Int :> Get '[JSON] User
-
-helloApi :: Proxy HelloAPI
-helloApi = Proxy
+  putStrLn "server starting..."
+  Logger.withStdoutLogger $ \logger -> do
+    let settings = Warp.setPort 8080 $ Warp.setLogger logger Warp.defaultSettings
+    Warp.runSettings settings FeedsAPI.app
