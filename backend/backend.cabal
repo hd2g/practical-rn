@@ -50,12 +50,22 @@ extra-doc-files:    CHANGELOG.md
 -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
 -- extra-source-files:
 
-common warnings
-    ghc-options: -Wall
+common defaults
+    ghc-options:
+        -Wall
+
+    default-language: Haskell2010
+
+    default-extensions:
+        NoImplicitPrelude
+        ImportQualifiedPost
+        OverloadedStrings
+
     build-depends:
         base ^>=4.16.4.0,
         aeson,
         text,
+        protolude,
         wai,
         wai-logger,
         warp,
@@ -64,8 +74,8 @@ common warnings
         servant-client
 
 library
-    -- Import common warning flags.
-    import:           warnings
+    -- Import common default flags.
+    import:           defaults
 
     -- Modules exported by the library.
     exposed-modules:
@@ -86,8 +96,8 @@ library
     default-language: Haskell2010
 
 executable backend
-    -- Import common warning flags.
-    import:           warnings
+    -- Import common default flags.
+    import:           defaults
 
     -- .hs or .lhs file containing the Main module.
     main-is:          Main.hs
@@ -105,15 +115,9 @@ executable backend
     -- Directories containing source files.
     hs-source-dirs:   app
 
-    -- Base language which the package is written in.
-    default-language: Haskell2010
-
 test-suite backend-test
-    -- Import common warning flags.
-    import:           warnings
-
-    -- Base language which the package is written in.
-    default-language: Haskell2010
+    -- Import common default flags.
+    import:           defaults
 
     -- Modules included in this executable, other than Main.
     -- other-modules:

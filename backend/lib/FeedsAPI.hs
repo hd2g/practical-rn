@@ -5,6 +5,8 @@
 
 module FeedsAPI where
 
+import Prelude
+
 import GHC.Generics (Generic)
 import Servant
 import Servant.Server

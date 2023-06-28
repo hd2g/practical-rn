@@ -5,6 +5,8 @@
 
 module Main where
 
+import Prelude
+
 import GHC.Generics (Generic)
 
 import Data.Aeson (FromJSON, ToJSON)

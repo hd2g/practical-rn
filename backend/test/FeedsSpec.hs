@@ -3,6 +3,8 @@
 
 module FeedsSpec (spec) where
 
+import Prelude
+
 import FeedsAPI (app, Feeds)
 import Test.Hspec (Spec, describe, it, shouldBe)
 import Test.Hspec.Wai (liftIO, get, request, shouldRespondWith, with)

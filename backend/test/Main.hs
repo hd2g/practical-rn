@@ -1,5 +1,7 @@
 module Main (main) where
 
+import Prelude
+
 import Test.Hspec
 import Test.Hspec.Runner
 import Test.Hspec.Formatters
